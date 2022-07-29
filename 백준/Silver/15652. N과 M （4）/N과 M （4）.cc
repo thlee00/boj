@@ -6,7 +6,6 @@
 using namespace std;
 int n, m;
 int ans[9] = { 0 };
-int visited[9] = { 0 };
 
 void func(int idx, int num) {
 	if (num == m) {
