@@ -21,13 +21,10 @@ int check(int i, int j, int num) {
 			return false;
 	}
 	for (int x = 3 * (i / 3); x < 3 * (i / 3) + 3; x++)
-		for (int y = 3 * (j / 3); y < 3 * (j / 3) + 3; y++)
-		{
-			if (board[x][y] == num)
-			{
-				if (x != i && y != j)
+		for (int y = 3 * (j / 3); y < 3 * (j / 3) + 3; y++) {
+			if (x == i && y == j);
+			else if (board[x][y] == num)
 					return false;
-			}
 		}
 	return true;
 }
