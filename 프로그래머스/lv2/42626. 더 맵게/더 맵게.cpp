@@ -14,8 +14,10 @@ int solution(vector<int> scoville, int K) {
     while (!(pq.top() >= K)) {
         int first_min = pq.top();
         pq.pop();
+        
         if (pq.empty())
             return -1;
+        
         int second_min = pq.top();
         pq.pop();
         
