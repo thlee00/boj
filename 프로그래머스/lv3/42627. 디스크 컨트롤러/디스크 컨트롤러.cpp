@@ -22,31 +22,28 @@ int solution(vector<vector<int>> jobs) {
     
     sort(jobs.begin(), jobs.end());
     
-    cur_time = jobs[0][0];
-    disk.push(pii(jobs[0][0], jobs[0][1]));
-    cur_idx++;
-    
-    while (!disk.empty()) {
-        pii job = disk.top();
-        disk.pop();
-        cur_time += job.second;
-        answer += cur_time - job.first;
-        
+    while (cur_idx < n || !disk.empty()) {
         while (cur_idx < n) {
             if (jobs[cur_idx][0] <= cur_time) {
                 disk.push(pii(jobs[cur_idx][0], jobs[cur_idx][1]));
                 cur_idx++;
             }
-            else
+            else {
+                if (disk.empty()) {
+                    disk.push(pii(jobs[cur_idx][0], jobs[cur_idx][1]));
+                    cur_time = jobs[cur_idx][0];
+                    cur_idx++;
+                }
                 break;
+            }
         }
         
-        if (cur_idx < n && disk.empty()) {
-            cur_time = jobs[cur_idx][0];
-            disk.push(pii(jobs[cur_idx][0], jobs[cur_idx][1]));
-            cur_idx++;
-        }
+        pii job = disk.top();
+        disk.pop();
+        cur_time += job.second;
+        answer += cur_time - job.first;
     }
     
-    return answer / n;
+    answer /= n;
+    return answer;
 }
