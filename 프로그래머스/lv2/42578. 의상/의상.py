@@ -1,11 +1,11 @@
+from collections import Counter
+from functools import reduce
+
 def solution(clothes):
     answer = 1
     
-    clothes_dict = {}
-    for name, category in clothes:
-        clothes_dict[category] = clothes_dict.get(category, 0) + 1
+    counter = Counter([category for clothes, category in clothes])
     
-    for category in clothes_dict:
-        answer *= clothes_dict[category] + 1
+    answer = reduce(lambda ans, cur: ans*(cur+1), counter.values(), 1)
     
     return answer - 1
